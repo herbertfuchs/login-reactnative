@@ -7,8 +7,12 @@ import {
     TouchableOpacity } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Welcome(){
+    
+    const navigation = useNavigation();
+
     return(
         <View style={styles.container}>
 
@@ -20,14 +24,22 @@ export default function Welcome(){
                     resizeMode="contain"
                 />
             </View>
-            <View style={styles.containerForm}>
+            <Animatable.View 
+                style={styles.containerForm}
+                animation="fadeInUp"
+                delay={600}
+            >
+
                 <Text style={styles.title}>Monitore, organize seus gastos de qualquer lugar!</Text>
                 <Text style={styles.text}>Faça o login para começar</Text>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => {navigation.navigate("SignIn")}}
+                >
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
-            </View>
+            </Animatable.View>
 
         </View>
     );
